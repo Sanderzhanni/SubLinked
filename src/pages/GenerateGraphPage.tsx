@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import cytoscape from 'cytoscape';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -66,7 +65,7 @@ const GenerateGraphPage = (): React.ReactElement => {
         localStorage.setItem(doc[0], JSON.stringify(doc));
         setLoading(false);
       })
-      .catch((err) => {
+      .catch(() => {
         toast.error('Server Error!');
         setLoading(false);
       });
