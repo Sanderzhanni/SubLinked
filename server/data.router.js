@@ -33,12 +33,6 @@ const cache_middleware = (duration) => {
 //['subname', {author: 'name', comments: [string]}]
 const getSubredditData = async (sub, num) => {
     const data = [sub];
-    const subreddit = r.getSubreddit(sub);
-    try {
-        await subreddit.fetch();
-    } catch (e) {
-        return;
-    }
     await r.getSubreddit(sub)
         .getNew({limit: parseInt(num)})
         .then(listing => {
@@ -70,7 +64,8 @@ router.get('/:subredditName/:postCount', cache_middleware(90), async (req, res) 
         const subredditName = req.params.subredditName;
         const postCount = req.params.postCount;
         const data = await getSubredditData(subredditName, postCount);
-        if (!data) res.send(false);
+        // If its nor a valid subreddit name sends false
+        if (data.length < 2) res.send(false);
         res.status(200).send(data);
     } catch (e) {
         res.status(500);
