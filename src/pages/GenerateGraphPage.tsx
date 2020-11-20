@@ -25,7 +25,6 @@ import {
   colorEdge,
   appendData,
 } from '../utils/cytoScapeFunctions';
-import { ping, calcResTime } from '../utils/bandwidth';
 
 cytoscape.use(coseBilkent);
 cytoscape.use(cxtmenu);
@@ -37,28 +36,6 @@ const GenerateGraphPage = (): React.ReactElement => {
   const [loading, setLoading] = useState(false);
   const [subredditName, setSubredditName] = useState('');
   const [postCount, setPostCount] = useState(15);
-  const [resTime, setResTime] = useState<number>(0);
-  const [progress, setProgress] = useState<number>(0);
-
-  // Display the loading bar
-  useEffect(() => {
-    if (!loading) return;
-    let counter = 0;
-    let progressPrecentage = 0;
-    const responseTime = calcResTime(resTime, postCount);
-    const timer = setInterval(() => {
-      counter += 1;
-      progressPrecentage = (counter * 100) / responseTime;
-      setProgress(progressPrecentage);
-      if (progressPrecentage >= 100) {
-        setProgress(100);
-        clearInterval(timer);
-      }
-    }, 1000);
-    return () => {
-      clearInterval(timer);
-    };
-  }, [loading]);
 
   // API request for getting data by subreddit name
   const fetchData = (): void => {
@@ -88,12 +65,10 @@ const GenerateGraphPage = (): React.ReactElement => {
         setCyData((oldArray: Posts) => [...oldArray, doc] as unknown as Posts);
         localStorage.setItem(doc[0], JSON.stringify(doc));
         setLoading(false);
-        setProgress(0);
       })
       .catch((err) => {
         toast.error('Server Error!');
         setLoading(false);
-        setProgress(0);
       });
   };
 
@@ -123,7 +98,6 @@ const GenerateGraphPage = (): React.ReactElement => {
       setCy(initCytoscape());
       firstLoad.current = false;
       loadFromStorage();
-      ping().then((res: number) => setResTime(res));
     }
   }, []);
 
@@ -145,7 +119,6 @@ const GenerateGraphPage = (): React.ReactElement => {
           <div className="loading-spinner">
             <CircularProgress color="secondary" size={50} />
           </div>
-          <LinearProgress color="secondary" className="progress-bar" variant="determinate" value={progress} />
         </>
       )}
       <div className="generate__page">

@@ -17,7 +17,7 @@ export const links = [
   },
 ];
 
-export const getPathName = (pathName: string) => {
+export const getPathName = (pathName: string): string | undefined => {
   switch (pathName) {
     case '/':
       return '';
