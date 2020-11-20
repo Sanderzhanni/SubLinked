@@ -103,7 +103,7 @@ const Menu = (): React.ReactElement => {
             { getPathName(window.location.pathname) }
           </Typography>
           <Tooltip title="Project on GitHub" placement="left">
-            <IconButton edge="end" color="inherit" aria-label="menu" onClick={(): Window | null => window.open('https://github.com/Sanderzhanni/ELU-project', '_blank')}>
+            <IconButton edge="end" color="inherit" aria-label="menu" onClick={(): Window | null => window.open('https://github.com/Sanderzhanni/SubLinked', '_blank')}>
               <GitHubIcon />
             </IconButton>
           </Tooltip>

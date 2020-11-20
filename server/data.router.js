@@ -1,6 +1,7 @@
 'use strict';
 const express = require("express");
 const router = express.Router();
+const cache = require('memory-cache');
 const snoowrap = require('snoowrap');
 require("dotenv").config();
 
@@ -11,12 +12,31 @@ const r = new snoowrap({
     refreshToken: process.env.REDDIT_REFRESH_TOKEN
 });
 
+// https://medium.com/the-node-js-collection/simple-server-side-cache-for-express-js-with-node-js-45ff296ca0f0
+const cache_middleware = (duration) => {
+    return (req, res, next) => {
+        const key = '__express__' + req.originalUrl || req.url;
+        const cachedData = cache.get(key);
+        if (cachedData) {
+            res.send(cachedData)
+        } else {
+            res.sendResponse = res.send;
+            res.send = (data) => {
+                cache.put(key, data, duration * 1000)
+                res.sendResponse(data);
+            }
+            next();
+        }
+    }
+}
+// Return data object
+//['subname', {author: 'name', comments: [string]}]
 const getSubredditData = async (sub, num) => {
     const data = [sub];
     const subreddit = r.getSubreddit(sub);
-    try{
-         await subreddit.fetch();
-    }catch (e) {
+    try {
+        await subreddit.fetch();
+    } catch (e) {
         return;
     }
     await r.getSubreddit(sub)
@@ -43,16 +63,16 @@ const getSubredditData = async (sub, num) => {
     return data;
 }
 
-//['subname', [{author: 'name', comments: [string]}]]
 
-router.get('/:subredditName/:postCount', async (req, res) => {
-    try{
+// cached for 90 seconds derived from average (posts / seconds)
+router.get('/:subredditName/:postCount', cache_middleware(90), async (req, res) => {
+    try {
         const subredditName = req.params.subredditName;
         const postCount = req.params.postCount;
         const data = await getSubredditData(subredditName, postCount);
-        if(!data) res.send(false);
+        if (!data) res.send(false);
         res.status(200).send(data);
-    }catch (e) {
+    } catch (e) {
         res.status(500);
     }
 
