@@ -1,0 +1,53 @@
+@import "variables";
+.cytoscape__div {
+  background-color: $base-cy-background-color-light;
+  @media (prefers-color-scheme: dark) {
+    background-color: $base-cy-background-color-dark;
+  }
+  width: 100%;
+  @media only screen and (max-width: 415px) {
+    height: 1500px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 20px;
+  }
+  @media only screen and (min-width: 415px) and (max-width: 769px) {
+    height: 1500px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 20px;
+  }
+  @media only screen and (min-width: 769px) {
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    height: calc(100vh);
+  }
+}
+
+.cytoscape-calc__div {
+  background-color: $base-cy-background-color-light;
+  @media (prefers-color-scheme: dark) {
+    background-color: $base-cy-background-color-dark;
+  }
+  width: 100%;
+  @media only screen and (max-width: 415px) {
+    height: 1500px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 20px;
+  }
+  @media only screen and (min-width: 415px) and (max-width: 769px) {
+    height: 1500px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 20px;
+  }
+  @media only screen and (min-width: 769px) {
+    height: 100vh;
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+  }
+}
+
+
+
