@@ -15,7 +15,8 @@ import {
   removeNodeOrEdge,
   colorNode,
   colorEdge,
-  appendData, initCytoscape,
+  appendData,
+  initCytoscape,
 } from '../utils/cytoScapeFunctions';
 
 cytoscape.use(coseBilkent);
@@ -36,7 +37,7 @@ const ProjectGraph = (): React.ReactElement => {
 
   // If data is loaded render the graph
   useEffect(() => {
-    cy && appendData(cy, cyData);
+    cy && appendData(cy, cyData, false);
   }, [cyData]);
 
   // Init cytoscape and load data

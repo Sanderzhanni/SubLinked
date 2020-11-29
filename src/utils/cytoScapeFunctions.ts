@@ -161,15 +161,18 @@ const connectByComments = (cy: cytoscape.Core, comments: Post[]): void => {
 export const appendData = (
   cy: cytoscape.Core,
   posts: Posts,
+  affiliated = true,
 ): void => {
   const globalNodes: string[] = [];
   let postComments: Post[] = [];
   posts.forEach((post) => {
     const postSubredditName = post[0] as string;
-    addNode(cy, postSubredditName, 'subreddit');
-    colorNode(cy, postSubredditName, 'white');
-    changeNodeShape(cy, postSubredditName, 'ellipse');
-    styleSubredditNode(cy, postSubredditName);
+    if (affiliated) {
+      addNode(cy, postSubredditName, 'subreddit');
+      colorNode(cy, postSubredditName, 'white');
+      changeNodeShape(cy, postSubredditName, 'ellipse');
+      styleSubredditNode(cy, postSubredditName);
+    }
     for (let i = 1; i < post.length; i += 1) {
       const currentPost = post[i] as Post;
       const nodeId = currentPost.author;
@@ -177,9 +180,9 @@ export const appendData = (
       postComments = [...postComments, commentForest];
       if (!globalNodes.includes(nodeId)) {
         addNode(cy, nodeId, 'author');
-        colorNode(cy, nodeId, stc(postSubredditName));
+        affiliated && colorNode(cy, nodeId, stc(postSubredditName));
       }
-      addEdge(cy, postSubredditName, nodeId);
+      affiliated && addEdge(cy, postSubredditName, nodeId);
       globalNodes.push(nodeId);
     }
   });
