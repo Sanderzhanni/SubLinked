@@ -3,6 +3,7 @@ import stc from 'string-to-color';
 import Post from '../interfaces/Post';
 import Posts from '../interfaces/Posts';
 import Automove from '../interfaces/Automove';
+import layoutOptions from './cytoscapeOptions';
 
 // Initial cytoscape options
 export const initCytoscape = (): cytoscape.Core => cytoscape({
@@ -180,13 +181,13 @@ export const appendData = (
       postComments = [...postComments, commentForest];
       if (!globalNodes.includes(nodeId)) {
         addNode(cy, nodeId, 'author');
-        affiliated && colorNode(cy, nodeId, stc(postSubredditName));
+        colorNode(cy, nodeId, stc(postSubredditName));
       }
       affiliated && addEdge(cy, postSubredditName, nodeId);
       globalNodes.push(nodeId);
     }
   });
   connectByComments(cy, postComments);
-  cy.layout({ name: 'cose-bilkent' }).run();
+  cy.layout(layoutOptions).run();
   configureAutomove(cy);
 };
