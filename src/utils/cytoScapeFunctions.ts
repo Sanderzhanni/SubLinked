@@ -3,7 +3,7 @@ import stc from 'string-to-color';
 import Post from '../interfaces/Post';
 import Posts from '../interfaces/Posts';
 import Automove from '../interfaces/Automove';
-import layoutOptions from './cytoscapeOptions';
+import layoutOptions, { layoutOptionsMini } from './cytoscapeOptions';
 
 // Initial cytoscape options
 export const initCytoscape = (): cytoscape.Core => cytoscape({
@@ -188,6 +188,6 @@ export const appendData = (
     }
   });
   connectByComments(cy, postComments);
-  cy.layout(layoutOptions).run();
+  affiliated ? cy.layout(layoutOptionsMini).run() : cy.layout(layoutOptions).run();
   configureAutomove(cy);
 };
