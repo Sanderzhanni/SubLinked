@@ -27,8 +27,8 @@ const ProjectGraph = (): React.ReactElement => {
   const firstLoad = useRef(true);
 
   // Get data from pregenerated graph data
-  const loadProjectData = (): void => {
-    const data = getData();
+  const loadProjectData = async (): Promise<void> => {
+    const data = await getData();
     data.forEach((post: Posts) => {
       setCyData((oldArray: Posts) => [...oldArray, post] as unknown as Posts);
     });

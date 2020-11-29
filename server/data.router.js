@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const cache = require('memory-cache');
 const snoowrap = require('snoowrap');
+const subredditData = require('./database.js');
 require("dotenv").config();
 
 const r = new snoowrap({
@@ -57,6 +58,16 @@ const getSubredditData = async (sub, num) => {
     return data;
 }
 
+router.get('/', (req, res) => {
+    try{
+        res.status(200).send(subredditData);
+    }
+    catch (e) {
+        console.log(e);
+        res.status(500);
+    }
+
+});
 
 // cached for 90 seconds derived from average (posts / seconds)
 router.get('/:subredditName/:postCount', cache_middleware(90), async (req, res) => {
@@ -70,7 +81,6 @@ router.get('/:subredditName/:postCount', cache_middleware(90), async (req, res) 
     } catch (e) {
         res.status(500);
     }
-
 })
 
 module.exports = router;
