@@ -10,9 +10,9 @@ const WelcomePage = (): React.ReactElement => (
       <div className="particles__wrapper">
         <Particles className="particles__container" options={particlesOptions} />
         <div className="particles__content">
-          <img src={LogoOnDark} className="particles__logo" alt="Website Dark Logo" />
           <div className="text">
-            <Typography variant="h1" />
+            <h1>Welcome To</h1>
+            <img src={LogoOnDark} className="particles__logo" alt="Website Dark Logo" />
           </div>
         </div>
       </div>

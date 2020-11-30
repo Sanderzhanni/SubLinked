@@ -22,7 +22,7 @@ const layoutOptions = {
   // Whether to enable incremental mode
   randomize: true,
   // Node repulsion (non overlapping) multiplier
-  nodeRepulsion: 1000,
+  nodeRepulsion: 5000,
   // Ideal (intra-graph) edge length
   idealEdgeLength: 100,
   // Divisor to compute edge forces
