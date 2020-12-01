@@ -24,13 +24,14 @@ const useStyles = makeStyles(() => createStyles({
 
 const ContactForm = (): React.ReactElement => {
   const classes = useStyles();
+  const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [subject, setSubject] = useState<string>('');
   const [message, setMessage] = useState<string>('');
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    if (!email || !subject || !message) {
+    if (!email || !subject || !message || !name) {
       console.log('data missing');
       return;
     }
@@ -40,12 +41,13 @@ const ContactForm = (): React.ReactElement => {
         'Content-type': 'Application/json',
       },
       body: JSON.stringify({
-        email, subject, message,
+        name, email, subject, message,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data.accepted);
+        setName('');
         setEmail('');
         setSubject('');
         setMessage('');
@@ -63,7 +65,20 @@ const ContactForm = (): React.ReactElement => {
             <Box width="100%" display="flex" justifyContent="center">
               <form className={classes.form} noValidate autoComplete="off" onSubmit={handleSubmit}>
                 <Typography component="h2" variant="h6" align="left">
-                  Your Email* (required)
+                  Your Name* (required)
+                </Typography>
+                <TextField
+                  className={classes.input}
+                  id="outlined-basic"
+                  label="Name"
+                  variant="outlined"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <Box margin="0 auto" m={3} />
+                <Typography component="h2" variant="h6" align="left">
+                  Your Email*
                 </Typography>
                 <TextField
                   className={classes.input}

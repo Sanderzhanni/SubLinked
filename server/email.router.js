@@ -18,16 +18,17 @@ transporter.verify((error, success) => {
     if (error) {
         console.log(error);
     } else {
-        console.log('Server is ready to take messages');
+        console.log('Email service ok!');
     }
 });
 
 router.post('/', async (req, res) => {
     try{
-        const { email, subject, message } = req.body;
-
+        const { name, email, subject, message } = req.body;
+        console.log(email);
         const mail = {
-            from: email,
+            from: `${name} <example@nodemailer.com>`,
+            replyTo: email,
             to: 'serviceviaadult@gmail.com',  // Change to email address that you want to receive messages on
             subject: subject,
             text:message
