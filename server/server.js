@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const port = process.env.PORT || 5000;
 const apiRouter = require("./apiRouter.js");
 const path = require("path");
 require("dotenv").config();
 
+app.use(bodyParser.json());
 app.use(apiRouter);
 
 // add middlewares
