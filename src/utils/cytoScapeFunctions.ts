@@ -159,35 +159,50 @@ const connectByComments = (cy: cytoscape.Core, comments: Post[]): void => {
   });
 };
 
-export const appendData = (
-  cy: cytoscape.Core,
-  posts: Posts,
-  affiliated = true,
-): void => {
-  const globalNodes: string[] = [];
+const handleSubredditNode = (cy: cytoscape.Core, postSubredditName: string) => {
+  addNode(cy, postSubredditName, 'subreddit');
+  colorNode(cy, postSubredditName, 'white');
+  changeNodeShape(cy, postSubredditName, 'ellipse');
+  styleSubredditNode(cy, postSubredditName);
+};
+
+const handleNode = (cy: cytoscape.Core, nodes: string[], nodeId: string, subrName: string) => {
+  if (!nodes.includes(nodeId)) {
+    addNode(cy, nodeId, 'author');
+    colorNode(cy, nodeId, stc(subrName));
+  }
+};
+
+const handleNodes = (cy: cytoscape.Core, post: Post[], subrName: string, affiliated: boolean) => {
+  const globalNodes: string[] = []; // Keep track of nodes to not overwrite them
   let postComments: Post[] = [];
+  for (let i = 1; i < post.length; i += 1) {
+    const currentPost = post[i] as unknown as Post;
+    const nodeId = currentPost.author;
+    const commentForest = { author: nodeId, comments: currentPost.comments };
+    postComments = [...postComments, commentForest];
+    handleNode(cy, globalNodes, nodeId, subrName);
+    affiliated && addEdge(cy, subrName, nodeId);
+    globalNodes.push(nodeId);
+  }
+  connectByComments(cy, postComments);
+};
+
+const handlePosts = (cy: cytoscape.Core, posts: Posts, affiliated: boolean) => {
   posts.forEach((post) => {
     const postSubredditName = post[0] as string;
-    if (affiliated) {
-      addNode(cy, postSubredditName, 'subreddit');
-      colorNode(cy, postSubredditName, 'white');
-      changeNodeShape(cy, postSubredditName, 'ellipse');
-      styleSubredditNode(cy, postSubredditName);
-    }
-    for (let i = 1; i < post.length; i += 1) {
-      const currentPost = post[i] as Post;
-      const nodeId = currentPost.author;
-      const commentForest = { author: nodeId, comments: currentPost.comments };
-      postComments = [...postComments, commentForest];
-      if (!globalNodes.includes(nodeId)) {
-        addNode(cy, nodeId, 'author');
-        colorNode(cy, nodeId, stc(postSubredditName));
-      }
-      affiliated && addEdge(cy, postSubredditName, nodeId);
-      globalNodes.push(nodeId);
-    }
+    // If the type is affiliated connect all nodes to a central hub[Subreddit]
+    affiliated && handleSubredditNode(cy, postSubredditName);
+    handleNodes(cy, post as Post[], postSubredditName, affiliated);
   });
-  connectByComments(cy, postComments);
+};
+
+const runLayout = (cy: cytoscape.Core, affiliated: boolean) => {
   affiliated ? cy.layout(layoutOptionsMini).run() : cy.layout(layoutOptions).run();
+};
+
+export const appendData = (cy: cytoscape.Core, posts: Posts, affiliated = true): void => {
+  handlePosts(cy, posts, affiliated);
+  runLayout(cy, affiliated);
   configureAutomove(cy);
 };
