@@ -8,6 +8,9 @@
 
 .generate__page {
   overflow: hidden !important;
+  height: calc(100vh - 64px);
+  margin-top: 64px;
+  padding-top: 10px;
 }
 
 .scrape-controls__div{

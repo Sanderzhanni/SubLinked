@@ -146,6 +146,7 @@ const GenerateGraphPage = (): React.ReactElement => {
                 value={subredditName}
                 label="Subreddit Name"
                 aria-labelledby="subredditName"
+                id="subredditNames"
                 onChange={(e): void => setSubredditName(e.target.value)}
                 onKeyPress={(e): void => {
                   if (e.key === 'Enter') fetchData();

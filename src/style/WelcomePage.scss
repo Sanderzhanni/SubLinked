@@ -1,7 +1,37 @@
 .container {
   margin: 0 auto;
   overflow: auto !important;
+  @media only screen and (min-width: 0px) and (max-width: 600px) {
+    margin-top: 56px;
+  }
+  @media only screen and (min-width: 600px) {
+    margin-top: 64px;
+  }
 }
+
+.play__container{
+  position: relative;
+  .static {
+    position: absolute;
+    width: 97%;
+  }
+  .static:hover {
+    opacity:0;
+  }
+  .active {
+    width: 97%;
+  }
+  .card{
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+}
+
+
 
 .particles__wrapper {
   position: relative;
@@ -23,7 +53,8 @@
       width: 54%;
       h1 {
         font-size: 4vw;
-        font-weight: normal;
+        font-weight: 200;
+        text-align: center;
       }
       img {
         width: 30vw;
