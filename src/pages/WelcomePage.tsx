@@ -10,6 +10,7 @@ import LogoOnDark from '../assets/LogoOnDarkReddit.svg';
 import GenerateGif from '../assets/generate.gif';
 import GenerateImage from '../assets/generatePage.svg';
 import ProjectImage from '../assets/project.png';
+import Footer from '../components/Footer';
 
 const WelcomePage = (): React.ReactElement => {
   const history = useHistory();
@@ -108,6 +109,7 @@ const WelcomePage = (): React.ReactElement => {
         </Box>
       </Box>
       <Box margin="0 auto" m={8} />
+      <Footer />
     </>
   );
 };

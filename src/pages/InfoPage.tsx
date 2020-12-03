@@ -4,6 +4,7 @@ import Box from '@material-ui/core/Box';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import AccordionSection from '../components/AccordionSection';
 import ContactForm from '../components/ContactForm';
+import Footer from '../components/Footer';
 
 const useStyles = makeStyles(() => createStyles({
   root: {
@@ -83,7 +84,7 @@ const InfoPage = (): React.ReactElement => {
               button or holding the node for a couple seconds) and choose
               delete.
             </AccordionSection>
-            <AccordionSection head1="How to choose subreddits" head2="">
+            <AccordionSection head1="Choosing subreddits" head2="">
               In the future we are planning to add a section to this website
               that would help its users choose subreddits based on
               how likely they are to be connected. For now you can visits
@@ -91,6 +92,9 @@ const InfoPage = (): React.ReactElement => {
               subreddits and their connectivity information. For example&nbsp;
               <a href="https://subredditstats.com/">https://subredditstats.com/</a>
               &nbsp;shows information like related subreddits by users and keywords.
+              Second excellent webpage for this is&nbsp;
+              <a href="https://anvaka.github.io/sayit/?query=funny">https://anvaka.github.io/sayit</a>
+              &nbsp; by anvaka.
             </AccordionSection>
             <AccordionSection head1="Why the 100 users / 1000 nodes limit?" head2="">
               Since cytoscape (the graph framework we are using) is not capable
@@ -154,6 +158,7 @@ const InfoPage = (): React.ReactElement => {
           <ContactForm />
         </Box>
       </Box>
+      <Footer />
     </>
   );
 };
