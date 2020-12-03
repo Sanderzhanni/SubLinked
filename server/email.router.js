@@ -3,6 +3,7 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 require("dotenv").config();
 
+
 const transport = {
     host: 'smtp.gmail.com', // Don’t forget to replace with the SMTP host of your provider
     port: 587,

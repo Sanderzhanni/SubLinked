@@ -1,6 +1,8 @@
 import React, { FormEvent, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -25,12 +27,23 @@ const ContactForm = (): React.ReactElement => {
   const [subject, setSubject] = useState<string>('');
   const [message, setMessage] = useState<string>('');
 
+  const validateEmail = () => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (!email || !subject || !message || !name) {
-      console.log('data missing');
+      toast.warning('Please fill in all fields');
       return;
     }
+
+    if (!validateEmail()) {
+      toast.warning('Email incorrect');
+      return;
+    }
+
     fetch('/api/v1/email', {
       method: 'POST',
       headers: {
@@ -42,19 +55,29 @@ const ContactForm = (): React.ReactElement => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.accepted);
+        toast.success('Email sent successfully!');
         setName('');
         setEmail('');
         setSubject('');
         setMessage('');
       })
       .catch((err) => {
-        console.log(err);
+        toast.error('Server error.');
       });
   };
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+        pauseOnHover
+      />
       <Box margin="0 auto">
         <Box width="100%" display="flex" justifyContent="center">
           <Paper elevation={0} className="contact-paper">
