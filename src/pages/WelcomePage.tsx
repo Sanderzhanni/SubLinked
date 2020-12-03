@@ -20,7 +20,7 @@ const WelcomePage = (): React.ReactElement => {
         <div className="particles__wrapper">
           <Particles className="particles__container" options={particlesOptions} />
           <div className="particles__content">
-            <div className="text">
+            <div className="text" style={{ color: 'white' }}>
               <h1>Welcome To</h1>
               <img src={LogoOnDark} className="particles__logo" alt="Website Dark Logo" />
             </div>
@@ -58,9 +58,9 @@ const WelcomePage = (): React.ReactElement => {
           <Box display="flex" justifyContent="center" m={3} p={1} className="play__container">
             <Paper
               variant="outlined"
-              square
               className="card"
               onClick={() => history.push('/generate-graph')}
+              style={{ background: '#2C373E' }}
             >
               <img className="static" src={GenerateImage} alt="Generate page banner" />
               <img className="active" src={GenerateGif} alt="Generate page banner" />
@@ -81,7 +81,7 @@ const WelcomePage = (): React.ReactElement => {
           <Box display="flex" justifyContent="center" m={3} p={1}>
             <Paper
               variant="outlined"
-              style={{ width: '100%', cursor: 'pointer' }}
+              style={{ width: '100%', cursor: 'pointer', background: '#2C373E' }}
               onClick={() => history.push('/project-graph')}
             >
               <img style={{ width: '100%' }} src={ProjectImage} alt="Generate page banner" />
