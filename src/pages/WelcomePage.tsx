@@ -27,14 +27,14 @@ const WelcomePage = (): React.ReactElement => {
           </div>
         </div>
       </div>
-      <Box width="75%" margin="0 auto">
+      <Box className="content">
         <Box display="flex" justifyContent="center" m={2} p={1}>
           <Typography component="h1" variant="h4" align="center">
             <b>SubLinked. </b>
             Visualize connections between subreddits.
           </Typography>
         </Box>
-        <Box display="flex" justifyContent="center" m={1} p={1} width="50%" margin="0 auto">
+        <Box className="text" m={1} p={1}>
           <Typography component="h2" variant="subtitle1" align="center">
             SubLinked is a website dedicated to finding
             connections between subreddits via their users.
@@ -49,7 +49,7 @@ const WelcomePage = (): React.ReactElement => {
               Try it out
             </Typography>
           </Box>
-          <Box display="flex" justifyContent="center" width="35%" margin="0 auto">
+          <Box className="text-tip">
             <Typography variant="body1" align="center">
               Get started by creating your own social networks
               by choosing any existing subreddits.
@@ -66,13 +66,13 @@ const WelcomePage = (): React.ReactElement => {
               <img className="active" src={GenerateGif} alt="Generate page banner" />
             </Paper>
           </Box>
-          <Box margin="0 auto" m={32} />
+          <Box margin="0 auto" m={16} />
           <Box display="flex" justifyContent="center" m={3}>
             <Typography component="h3" variant="h5" align="center">
               Need inspiration?
             </Typography>
           </Box>
-          <Box display="flex" justifyContent="center" width="35%" margin="0 auto">
+          <Box className="text-tip">
             <Typography variant="body1" align="center">
               Check out one of our social networks
               made for our project.
@@ -94,14 +94,14 @@ const WelcomePage = (): React.ReactElement => {
             Need help?
           </Typography>
         </Box>
-        <Box display="flex" justifyContent="center" width="35%" margin="0 auto">
+        <Box className="text-tip">
           <Typography variant="body1" align="center">
             If you need help using our website, please
             refer to our info page.
           </Typography>
         </Box>
         <Box margin="0 auto" m={8} />
-        <Box display="flex" justifyContent="center" width="35%" margin="0 auto">
+        <Box className="text-tip">
           <PermDataSettingIcon
             style={{ fontSize: 175, cursor: 'pointer' }}
             onClick={() => history.push('/info')}

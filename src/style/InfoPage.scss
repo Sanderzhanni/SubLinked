@@ -13,3 +13,52 @@
     margin: 20px 40px;
   }
 }
+.content-info {
+  margin: 0 auto;
+  .contact-form {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  @media only screen and (max-width: 415px) {
+    width: 100%;
+    .accordion-section {
+      width: 100%;
+    }
+    .contact-form {
+      width: 100%;
+    }
+    .contact-paper {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+  @media only screen and (min-width: 415px) and (max-width: 1024px) {
+    width: 100%;
+    .accordion-section {
+      width: 90%;
+    }
+    .contact-form {
+      width: 90%;
+    }
+    .contact-paper {
+      width: 90%;
+      padding: 15px;
+    }
+  }
+  @media only screen and (min-width: 1025px) {
+    width: 75%;
+    .accordion-section {
+      width: 75%;
+    }
+    .contact-form {
+      width: 50%;
+    }
+    .contact-paper {
+      width: 75%;
+      padding: 15px;
+    }
+  }
+}
+
+

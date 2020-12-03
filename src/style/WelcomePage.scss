@@ -9,19 +9,67 @@
   }
 }
 
-.play__container{
+.content {
+  margin: 0 auto;
+
+  .text {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .text-tip {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  @media only screen and (max-width: 415px) {
+    width: 100%;
+    .text {
+      width: 95%;
+    }
+    .text-tip {
+      width: 90%;
+    }
+  }
+  @media only screen and (min-width: 415px) and (max-width: 1024px) {
+    width: 100%;
+    .text {
+      width: 80%;
+    }
+    .text-tip {
+      width: 60%;
+    }
+  }
+  @media only screen and (min-width: 1025px) {
+    width: 75%;
+    .text {
+      width: 50%;
+    }
+    .text-tip {
+      width: 35%;
+    }
+  }
+}
+
+.play__container {
   position: relative;
+
   .static {
     position: absolute;
-    width: 97%;
+    width: 95%;
   }
+
   .static:hover {
-    opacity:0;
+    opacity: 0;
   }
+
   .active {
-    width: 97%;
+    width: 95%;
   }
-  .card{
+
+  .card {
     width: 100%;
     cursor: pointer;
     display: flex;
@@ -32,16 +80,16 @@
 }
 
 
-
 .particles__wrapper {
   position: relative;
   overflow: hidden;
   width: 100vw;
-  height: 20vw;
+
   .particles__container {
     width: 100%;
     height: 100%;
   }
+
   .particles__content {
     .text {
       pointer-events: none;
@@ -49,17 +97,55 @@
       display: flex;
       left: 50%;
       top: 50%;
-      transform: translate(-50%, -50%);
-      width: 54%;
+
       h1 {
-        font-size: 4vw;
         font-weight: 200;
         text-align: center;
       }
+
       img {
-        width: 30vw;
         margin-left: 20px;
         margin-top: -20px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 415px) {
+    height: 50vw;
+    .text {
+      width: 95%;
+      transform: translate(-50%, -50%);
+      h1 {
+        font-size: 8vw;
+      }
+      img {
+        width: 50vw;
+      }
+    }
+  }
+  @media only screen and (min-width: 415px) and (max-width: 1024px) {
+    height: 30vw;
+    .text {
+      width: 80%;
+      transform: translate(-50%, -50%);
+      h1 {
+        font-size: 6vw;
+      }
+      img {
+        width: 40vw;
+      }
+    }
+  }
+  @media only screen and (min-width: 1025px) {
+    height: 20vw;
+    .text {
+      width: 54%;
+      transform: translate(-50%, -50%);
+      h1 {
+        font-size: 4vw;
+      }
+      img {
+        width: 30vw;
       }
     }
   }

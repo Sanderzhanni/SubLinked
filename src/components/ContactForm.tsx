@@ -13,10 +13,6 @@ const useStyles = makeStyles(() => createStyles({
   input: {
     width: '100%',
   },
-  paper: {
-    width: '75%',
-    padding: '15px',
-  },
   form: {
     width: '100%',
   },
@@ -61,7 +57,7 @@ const ContactForm = (): React.ReactElement => {
     <>
       <Box margin="0 auto">
         <Box width="100%" display="flex" justifyContent="center">
-          <Paper elevation={0} className={classes.paper}>
+          <Paper elevation={0} className="contact-paper">
             <Box width="100%" display="flex" justifyContent="center">
               <form className={classes.form} noValidate autoComplete="off" onSubmit={handleSubmit}>
                 <Typography component="h2" variant="h6" align="left">

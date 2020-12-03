@@ -1,4 +1,5 @@
 @import "variables";
+
 .cytoscape__div {
   background-color: $base-cy-background-color-light;
   @media (prefers-color-scheme: dark) {
@@ -6,16 +7,16 @@
   }
   width: 100%;
   @media only screen and (max-width: 415px) {
-    height: 1500px;
+    height: calc(100vh - 56px);
     border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
-    margin-bottom: 20px;
+    margin-top: 56px;
   }
   @media only screen and (min-width: 415px) and (max-width: 769px) {
-    height: 1500px;
+    height: calc(100vh - 64px);
     border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
-    margin-bottom: 20px;
+    margin-top: 64px;
   }
   @media only screen and (min-width: 769px) {
     border-bottom: 1px solid lightgray;

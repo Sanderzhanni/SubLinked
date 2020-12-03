@@ -1,4 +1,4 @@
-.loading-spinner{
+.loading-spinner {
   left: 50%;
   top: 5%;
   margin-left: -25px;
@@ -11,10 +11,13 @@
   height: calc(100vh - 64px);
   margin-top: 64px;
   padding-top: 10px;
+  @media only screen and (max-width: 415px) {
+    height: calc(100vh + 200px);
+  }
 }
 
-.scrape-controls__div{
-  .line-high{
+.scrape-controls__div {
+  .line-high {
     line-height: 44px;
   }
 
@@ -23,7 +26,7 @@
     align-content: stretch;
     flex-direction: column;
     margin: 15px 0;
-    .gen__button{
+    .gen__button {
       button {
         width: 100%;
         margin-top: 10px;
@@ -35,13 +38,13 @@
     align-content: stretch;
     flex-wrap: wrap;
     margin: 15px 0;
-    .gen__button{
+    .gen__button {
       button {
         width: 100%;
         margin-top: 10px;
       }
     }
-    .posts-slider{
+    .posts-slider {
       flex-grow: 1;
     }
   }
@@ -52,7 +55,7 @@
     align-items: baseline;
     margin-left: 20px;
     margin-top: 15px;
-    .posts-slider{
+    .posts-slider {
       flex-grow: 1;
     }
   }
@@ -60,7 +63,7 @@
 
 #canvas-wrap {
   position: relative;
-  height: 100%;
+
   .nodeInfo {
     position: absolute;
     top: 10px;
@@ -71,9 +74,22 @@
     color: white;
     padding: 0 5px;
   }
-  .sandbox__checkbox{
+
+  .sandbox__checkbox {
     display: flex;
     justify-content: space-between;
+  }
+
+  @media only screen and (max-width: 415px) {
+    .nodeInfo {
+      width: 90%;
+    }
+  }
+  @media only screen and (min-width: 415px) and (max-width: 769px) {
+    height: 100%;
+  }
+  @media only screen and (min-width: 769px) {
+    height: 100%;
   }
 }
 

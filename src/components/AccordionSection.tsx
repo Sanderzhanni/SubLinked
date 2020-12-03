@@ -9,7 +9,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme: Theme) => createStyles({
   heading: {
     fontSize: theme.typography.pxToRem(16),
-    flexBasis: '50%',
+    flexBasis: '100%',
     flexShrink: 0,
   },
   secondaryHeading: {
