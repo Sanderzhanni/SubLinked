@@ -2,7 +2,6 @@ require("dotenv").config();
 
 const authMiddleware = (req, res, next) => {
     const bearerHeader = req.headers["authorization"];
-    console.log(bearerHeader);
     if (!bearerHeader) return res.send(401);
     const key = bearerHeader.split(" ")[1];
     if (!key) return res.send(401);
