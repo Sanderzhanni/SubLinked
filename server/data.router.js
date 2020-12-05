@@ -77,9 +77,11 @@ router.get('/:subredditName/:postCount', cache_middleware(90), async (req, res) 
     try {
         const subredditName = req.params.subredditName;
         const postCount = req.params.postCount;
+        // Dont allow over 100 posts
+        if(postCount > 100) return res.status(500).send(false);
         const data = await getSubredditData(subredditName, postCount);
         // If its nor a valid subreddit name sends false
-        if (data.length < 2) res.send(false);
+        if (data.length < 2) return res.send(false);
         res.status(200).send(data);
     } catch (e) {
         res.status(500);
