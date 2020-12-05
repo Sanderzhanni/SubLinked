@@ -54,6 +54,9 @@ const getSubredditData = async (sub, num) => {
                 data.push(post);
             })
         })
+        .catch( err => {
+            //console.log(err)
+        })
 
     return data;
 }
