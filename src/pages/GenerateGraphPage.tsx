@@ -52,6 +52,9 @@ const GenerateGraphPage = (): React.ReactElement => {
     setSubredditName('');
     setLoading(true);
     fetch(`/api/v1/data/${subredditName}/${postCount}`, {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_API_SECRET}`,
+      },
       method: 'GET',
     })
       .then((res) => res.json())

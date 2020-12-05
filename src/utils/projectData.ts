@@ -14,6 +14,9 @@ interface PostsData {
 const fetchData = async (): Promise<PostsData[]> => {
   let returnData: PostsData[] = [];
   await fetch('/api/v1/data', {
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_API_SECRET}`,
+    },
     method: 'GET',
   })
     .then((res) => res.json())

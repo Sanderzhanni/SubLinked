@@ -48,6 +48,7 @@ const ContactForm = (): React.ReactElement => {
       method: 'POST',
       headers: {
         'Content-type': 'Application/json',
+        Authorization: `Bearer ${process.env.REACT_APP_API_SECRET}`,
       },
       body: JSON.stringify({
         name, email, subject, message,

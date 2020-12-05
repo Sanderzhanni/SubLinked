@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const nodemailer = require('nodemailer');
+const {authMiddleware} = require('./auth.middleware');
 require("dotenv").config();
 
 
@@ -23,10 +24,10 @@ transporter.verify((error, success) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', authMiddleware,  async (req, res) => {
     try{
         const { name, email, subject, message } = req.body;
-        console.log(email);
+        if (!name || !email || !subject || !message) return res.send(500);
         const mail = {
             from: `${name} <example@nodemailer.com>`,
             replyTo: email,

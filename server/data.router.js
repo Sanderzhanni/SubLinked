@@ -4,6 +4,7 @@ const router = express.Router();
 const cache = require('memory-cache');
 const snoowrap = require('snoowrap');
 const subredditData = require('./database.js');
+const {authMiddleware} = require('./auth.middleware');
 require("dotenv").config();
 
 const r = new snoowrap({
@@ -61,7 +62,7 @@ const getSubredditData = async (sub, num) => {
     return data;
 }
 
-router.get('/', (req, res) => {
+router.get('/', authMiddleware, (req, res) => {
     try{
         res.status(200).send(subredditData);
     }
@@ -73,7 +74,7 @@ router.get('/', (req, res) => {
 });
 
 // cached for 90 seconds derived from average (posts / seconds)
-router.get('/:subredditName/:postCount', cache_middleware(90), async (req, res) => {
+router.get('/:subredditName/:postCount', authMiddleware, cache_middleware(90), async (req, res) => {
     try {
         const subredditName = req.params.subredditName;
         const postCount = req.params.postCount;
