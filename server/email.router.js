@@ -31,7 +31,7 @@ router.post('/', authMiddleware,  async (req, res) => {
         const mail = {
             from: `${name} <example@nodemailer.com>`,
             replyTo: email,
-            to: 'serviceviaadult@gmail.com',  // Change to email address that you want to receive messages on
+            to: process.env.EMAIL,  // Change to email address that you want to receive messages on
             subject: subject,
             text:message
         }
