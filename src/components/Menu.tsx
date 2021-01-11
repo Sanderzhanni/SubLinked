@@ -15,6 +15,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
+import DescriptionIcon from '@material-ui/icons/Description';
 import InfoIcon from '@material-ui/icons/Info';
 import AddToQueueIcon from '@material-ui/icons/AddToQueue';
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -53,6 +54,8 @@ const mapIcons = (num: number, classes: Classes): React.ReactElement => {
     case 2:
       return <AddToQueueIcon className={classes.menuIcon} />; // generate
     case 3:
+      return <DescriptionIcon className={classes.menuIcon} />;
+    case 4:
       return <InfoIcon className={classes.menuIcon} />;
     default:
       return <HomeIcon className={classes.menuIcon} />;

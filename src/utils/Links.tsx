@@ -12,6 +12,10 @@ export const links = [
     name: 'Generate a Graph',
   },
   {
+    path: '/about-project',
+    name: 'About Project',
+  },
+  {
     path: '/info',
     name: 'Info',
   },
@@ -25,6 +29,8 @@ export const getPathName = (pathName: string): string | undefined => {
       return 'Project Graph';
     case '/generate-graph':
       return 'Generate a Custom Graph';
+    case '/about-project':
+      return 'Project Portfolio';
     case '/info':
       return 'Information';
   }

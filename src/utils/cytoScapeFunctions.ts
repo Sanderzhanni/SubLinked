@@ -20,7 +20,7 @@ export const initCytoscape = (): cytoscape.Core => cytoscape({
   ],
 });
 
-// Add a new node
+// Add a new node with its type
 export const addNode = (cy: cytoscape.Core, id: string, type: string): void => {
   cy.add([
     { group: 'nodes', data: { id, type } },
@@ -28,14 +28,17 @@ export const addNode = (cy: cytoscape.Core, id: string, type: string): void => {
 };
 
 // Change node size logarithmically
+// TODO [optimisation] - change style as a batch
 const sizeNodes = (cy: cytoscape.Core): void => {
   cy.$('node').forEach((node: cytoscape.NodeSingular) => {
     if (node.data().type !== 'subreddit' && node.degree(false)) {
+      // Normal nodes
       node.style({
         width: 20 + Math.log(node.degree(false)) * 15,
         height: 20 + Math.log(node.degree(false)) * 15,
       });
     } else if (node.degree(false)) {
+      // Subreddit node
       node.style({
         width: Math.log(node.degree(false)) * 8,
         height: Math.log(node.degree(false)) * 8,
@@ -150,6 +153,7 @@ export const configureAutomove = (cy: cytoscape.Core): void => {
 };
 
 // Connect 2 nodes that appear under the same post as comments
+// TODO [optimisation] - change style as a batch
 const connectByComments = (cy: cytoscape.Core, comments: Post[]): void => {
   comments.forEach((commentForest: Post) => {
     commentForest.comments.forEach((comment: string) => {
@@ -159,6 +163,7 @@ const connectByComments = (cy: cytoscape.Core, comments: Post[]): void => {
   });
 };
 
+// Subreddit node init
 const handleSubredditNode = (cy: cytoscape.Core, postSubredditName: string) => {
   addNode(cy, postSubredditName, 'subreddit');
   colorNode(cy, postSubredditName, 'white');
@@ -166,6 +171,7 @@ const handleSubredditNode = (cy: cytoscape.Core, postSubredditName: string) => {
   styleSubredditNode(cy, postSubredditName);
 };
 
+// Normal node init
 const handleNode = (cy: cytoscape.Core, nodes: string[], nodeId: string, subrName: string) => {
   if (!nodes.includes(nodeId)) {
     addNode(cy, nodeId, 'author');
@@ -173,6 +179,8 @@ const handleNode = (cy: cytoscape.Core, nodes: string[], nodeId: string, subrNam
   }
 };
 
+// Parse the post data into nodes
+// TODO [optimisation] - Handle nodes as a batch for performance
 const handleNodes = (cy: cytoscape.Core, post: Post[], subrName: string, affiliated: boolean) => {
   const globalNodes: string[] = []; // Keep track of nodes to not overwrite them
   let postComments: Post[] = [];
@@ -188,19 +196,22 @@ const handleNodes = (cy: cytoscape.Core, post: Post[], subrName: string, affilia
   connectByComments(cy, postComments);
 };
 
+// Parse the posts
 const handlePosts = (cy: cytoscape.Core, posts: Posts, affiliated: boolean) => {
   posts.forEach((post) => {
     const postSubredditName = post[0] as string;
-    // If the type is affiliated connect all nodes to a central hub[Subreddit]
+    // If the type is affiliated, connect all nodes to a central hub[Subreddit]
     affiliated && handleSubredditNode(cy, postSubredditName);
     handleNodes(cy, post as Post[], postSubredditName, affiliated);
   });
 };
 
+// Apply layout to the whole network
 const runLayout = (cy: cytoscape.Core, affiliated: boolean) => {
   affiliated ? cy.layout(layoutOptionsMini).run() : cy.layout(layoutOptions).run();
 };
 
+// Init a new graph from posts, master function
 export const appendData = (cy: cytoscape.Core, posts: Posts, affiliated = true): void => {
   handlePosts(cy, posts, affiliated);
   runLayout(cy, affiliated);

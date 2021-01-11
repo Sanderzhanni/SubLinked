@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import WelcomePage from '../pages/WelcomePage';
 import GenerateGraphPage from '../pages/GenerateGraphPage';
 import InfoPage from '../pages/InfoPage';
+import AboutProjectPage from "../pages/AboutProjectPage";
 import Menu from './Menu';
 import NotFound from '../pages/NotFound';
 import ProjectGraph from '../pages/ProjectGraph';
@@ -19,6 +20,7 @@ const Router = (): React.ReactElement => (
         <Route path="/" exact component={WelcomePage} />
         <Route path="/project-graph" exact component={ProjectGraph} />
         <Route path="/generate-graph" exact component={GenerateGraphPage} />
+        <Route path="/about-project" exact component={AboutProjectPage} />
         <Route path="/info" exact component={InfoPage} />
         <Route path="/privacy" exact component={Privacy} />
         <Route path="/terms-and-conditions" exact component={Terms} />
