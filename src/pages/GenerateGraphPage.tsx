@@ -85,6 +85,7 @@ const GenerateGraphPage = (): React.ReactElement => {
   // Delete grapgh and all associated data
   const deleteGraph = (): void => {
     localStorage.clear();
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     cy?.elements().remove();
     setCyData([] as unknown as Posts);
   };

@@ -1,30 +1,34 @@
 {
   "files": {
-    "main.css": "/static/css/main.f8cc1f56.chunk.css",
-    "main.js": "/static/js/main.50c66358.chunk.js",
-    "main.js.map": "/static/js/main.50c66358.chunk.js.map",
+    "main.css": "/static/css/main.49a7c1bd.chunk.css",
+    "main.js": "/static/js/main.43fb158e.chunk.js",
+    "main.js.map": "/static/js/main.43fb158e.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.70049210.js",
     "runtime-main.js.map": "/static/js/runtime-main.70049210.js.map",
     "static/css/2.d34346ea.chunk.css": "/static/css/2.d34346ea.chunk.css",
-    "static/js/2.d8c34554.chunk.js": "/static/js/2.d8c34554.chunk.js",
-    "static/js/2.d8c34554.chunk.js.map": "/static/js/2.d8c34554.chunk.js.map",
+    "static/js/2.276a9c9a.chunk.js": "/static/js/2.276a9c9a.chunk.js",
+    "static/js/2.276a9c9a.chunk.js.map": "/static/js/2.276a9c9a.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.5a9d222d5b64aaff352ef30fe169ad1b.js": "/precache-manifest.5a9d222d5b64aaff352ef30fe169ad1b.js",
+    "precache-manifest.f04cc4a0e3dde4bf61f7f41a83bf670f.js": "/precache-manifest.f04cc4a0e3dde4bf61f7f41a83bf670f.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.d34346ea.chunk.css.map": "/static/css/2.d34346ea.chunk.css.map",
-    "static/css/main.f8cc1f56.chunk.css.map": "/static/css/main.f8cc1f56.chunk.css.map",
-    "static/js/2.d8c34554.chunk.js.LICENSE.txt": "/static/js/2.d8c34554.chunk.js.LICENSE.txt",
+    "static/css/main.49a7c1bd.chunk.css.map": "/static/css/main.49a7c1bd.chunk.css.map",
+    "static/js/2.276a9c9a.chunk.js.LICENSE.txt": "/static/js/2.276a9c9a.chunk.js.LICENSE.txt",
     "static/media/LogoOnDarkReddit.svg": "/static/media/LogoOnDarkReddit.a74496c8.svg",
     "static/media/LogoOnLight.svg": "/static/media/LogoOnLight.c23d7bb4.svg",
     "static/media/generate.gif": "/static/media/generate.53edbbbd.gif",
     "static/media/generatePage.svg": "/static/media/generatePage.e3cebd6f.svg",
-    "static/media/project.png": "/static/media/project.2a024166.png"
+    "static/media/graph_v1.linear.png": "/static/media/graph_v1.linear.96f9f98b.png",
+    "static/media/graph_v2.affiliation.png": "/static/media/graph_v2.affiliation.b6d00e8e.png",
+    "static/media/project.png": "/static/media/project.2a024166.png",
+    "static/media/redditbanner.png": "/static/media/redditbanner.1a3e6b02.png",
+    "static/media/singular.png": "/static/media/singular.d3accf49.png"
   },
   "entrypoints": [
     "static/js/runtime-main.70049210.js",
     "static/css/2.d34346ea.chunk.css",
-    "static/js/2.d8c34554.chunk.js",
-    "static/css/main.f8cc1f56.chunk.css",
-    "static/js/main.50c66358.chunk.js"
+    "static/js/2.276a9c9a.chunk.js",
+    "static/css/main.49a7c1bd.chunk.css",
+    "static/js/main.43fb158e.chunk.js"
   ]
 }

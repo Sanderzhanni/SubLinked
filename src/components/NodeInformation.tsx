@@ -126,6 +126,7 @@ const NodeInformation = (props: NodeCardProps): React.ReactElement => {
 
   // Hide nodes that have less than 2 edges
   const hideNodes = (): void => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     cy?.$('node').forEach((node: cytoscape.NodeSingular) => {
       if (node.degree(false) < 2) {
         if (hideLowDegreeNodes) {
